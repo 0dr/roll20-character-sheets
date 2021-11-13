@@ -13000,6 +13000,25 @@
     <b>&bdquo;Das Schwarze Auge&ldquo;-Heldenbogen für Roll20.net, Version <input type="text" class="sheet-stat-immutable sheet-stat-immutable-version" disabled="disabled" name="attr_character_sheet_version" value="20211101"><input type="hidden" class="sheet-stat-immutable sheet-stat-immutable-version" readonly="readonly" name="attr_data_version" value=""></b>
     </table>
 </div>
+<!-- ANKAH2 -->
+<rolltemplate class="sheet-rolltemplate-check">
+3W20: {{computed::roll}}, Criticality {{computed::criticality}}
+{{#rollBetween() computed::criticality 2 2}}Doppel-1!{{/rollBetween() computed::criticality 2 2}}
+{{#rollBetween() computed::criticality 3 3}}Dreifach-1!{{/rollBetween() computed::criticality 3 3}}
+{{#rollBetween() computed::criticality -2 -2}}Doppel-20!{{/rollBetween() computed::criticality -2 -2}}
+{{#rollBetween() computed::criticality -3 -3}}Dreifach-20!{{/rollBetween() computed::criticality -3 -3}}
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-test">
+    <div class="sheet-template-container">
+        <div class="sheet-results">
+            <h4>{{name}} von {{characterid}}/{{charactername}} ({{taw}}): Roll {{roll}}/{{computed::roll}}</h4>
+			<div class="sheet-rolltemplate-button-outer">
+				<span class="sheet-rolltemplate-button-inner">[ZWEITA BATTEN](~{{characterid}}|reacttest||{{computed::passthrough}})</span>
+			</div>
+        </div>
+    </div>
+</rolltemplate>
 
 <rolltemplate class="sheet-rolltemplate-DSA-Talente">
 {{#rollGreater() Talent -1}}
@@ -18332,4 +18351,143 @@ function calcCritLevels (effects) {
 	debugLog(caller, 'Result:', result);
 	return result;
 }
+
+// ANKAH3
+on('clicked:check', (info) => {
+	startRoll(
+		"@{gm_roll_opt} " +
+		"&{template:check} " +
+		"{{name=Athletik}} " +
+		"{{wert=[[@{TaW_athletik}d1cs0cf2]]}} " +
+		"{{mod=[[?{Erleichterung (−) oder Erschwernis (+)|0}d1cs0cf2]]}} " +
+		"{{stats=[[[[@{Eigenschaft1athletik}]]d1cs0cf2 + [[@{Eigenschaft2athletik}]]d1cs0cf2 + [[@{Eigenschaft3athletik}]]d1cs0cf2]]}} " +
+		"{{roll=[[3d20cs<@{cs_talent}cf>@{cf_talent}]]}} " +
+		"{{critThresholds=[[[[@{cs_talent}]]d1cs0cf2 + [[@{cf_talent}]]d1cs0cf2]]}} " +
+		"{{criticality=[[0]]}}",
+		(results) => {
+			console.log("test: info:", info, "results:", results);
+			var TaW = results.results.wert.result;
+			var mod = results.results.mod.result;
+			var stats = [
+				results.results.stats.rolls[0].dice,
+				results.results.stats.rolls[1].dice,
+				results.results.stats.rolls[2].dice
+			];
+			var rolls = results.results.roll.rolls[0].results;
+			var success = results.results.critThresholds.rolls[0].dice;
+			var failure = results.results.critThresholds.rolls[1].dice;
+			var criticality = 0;
+
+			// TaP*-Berechnung
+			var effRolls = rolls;
+			var effTaW = TaW - mod;
+			var TaPstar = effTaW;
+
+			// Negativer TaW: |effTaW| zu Teilwürfen addieren
+			if ( effTaW < 0 )
+			{
+				for ( roll in rolls )
+				{
+					effRolls[roll] = rolls[roll] + Math.abs(effTaW);
+				}
+				TaPstar = 0;
+			}
+
+			for ( roll in effRolls )
+			{
+				TaPstar -= Math.max(0, effRolls[roll] - stats[roll]);
+			}
+
+			// Doppel/Dreifach-1/20-Berechnung
+			{
+				let successes = 0;
+				let failures = 0;
+				for (roll of rolls)
+				{
+					if (roll <= success)
+					{
+						successes += 1;
+					} else if (roll >= failure) {
+						failures += 1;
+					}
+					if ( successes >= 2 )
+					{
+						criticality = successes;
+					} else if ( failures >= 2 ) {
+						criticality = -failures;
+					}
+				}
+			}
+
+			finishRoll(
+				results.rollId,
+				{
+					criticality: criticality
+				}
+			);
+		}
+	);
+});
+
+
+
+on('clicked:test', (info) => {
+	startRoll(
+		"&{template:test} " +
+		"{{name=Akrobatik}} " +
+		"{{taw=[[@{TaW_akrobatik}]]}} " +
+		"{{roll=[[3d20cs1cf20]]}} " +
+		"{{characterid=@{character_id}}} " +
+		"{{charactername=@{character_name}}} " +
+		"{{passthrough=[[0]]}}",
+		(results) => {
+			console.log("test: info:", info, "results:", results);
+			rolls = results.results.roll.rolls[0].results;
+			console.log(rolls);
+			taw = results.results.taw.result;
+
+			crits = { "success": 0, "failure": 0 };
+			for (roll of rolls) {
+				if (rollEval("talent", roll, 4, 16) === "critical success") {
+					crits["success"] += 1;
+				} else if (rollEval("talent", roll, 4, 16) === "critical failure") {
+					crits["failure"] += 1;
+				}
+			}
+			console.log(rolls, crits);
+			finishRoll(
+				results.rollId,
+				{
+					roll: -100,
+					passthrough: 100,
+					originator: "Testo"
+				}
+			);
+		}
+	);
+});
+
+on('clicked:reacttest', (info) => {
+	startRoll(
+		"&{template:test} " +
+		"{{name=KACKrobatik}} " +
+		"{{taw=[[@{TaW_akrobatik}]]}} " +
+		"{{roll=[[1d20cs1cf20-10]]}} " +
+		"{{characterid=@{character_id}}} " +
+		"{{charactername=@{character_name}}} " +
+		"{{passthrough=[[0]]}}",
+		(results) => {
+			console.log("test: info:", info, "results:", results);
+			roll = results.results.roll.result;
+			taw = results.results.taw.result;
+
+			finishRoll(
+				results.rollId,
+				{
+					roll: 200
+				}
+			);
+		}
+	);
+});
 </script>
