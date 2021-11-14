@@ -18362,8 +18362,9 @@ on('clicked:check', (info) => {
 		"{{mod=[[?{Erleichterung (−) oder Erschwernis (+)|0}d1cs0cf2]]}} " +
 		"{{stats=[[[[@{Eigenschaft1athletik}]]d1cs0cf2 + [[@{Eigenschaft2athletik}]]d1cs0cf2 + [[@{Eigenschaft3athletik}]]d1cs0cf2]]}} " +
 		"{{roll=[[3d20cs<@{cs_talent}cf>@{cf_talent}]]}} " +
-		"{{critThresholds=[[[[@{cs_talent}]]d1cs0cf2 + [[@{cf_talent}]]d1cs0cf2]]}} " +
-		"{{criticality=[[0]]}}",
+		"{{result=[[0]]}} " +
+		"{{criticality=[[0]]}}" +
+		"{{critThresholds=[[[[@{cs_talent}]]d1cs0cf2 + [[@{cf_talent}]]d1cs0cf2]]}} ",
 		(results) => {
 			console.log("test: info:", info, "results:", results);
 			var TaW = results.results.wert.result;
@@ -18374,31 +18375,15 @@ on('clicked:check', (info) => {
 				results.results.stats.rolls[2].dice
 			];
 			var rolls = results.results.roll.rolls[0].results;
+			var result = 0;
 			var success = results.results.critThresholds.rolls[0].dice;
 			var failure = results.results.critThresholds.rolls[1].dice;
 			var criticality = 0;
 
-			// TaP*-Berechnung
-			var effRolls = rolls;
-			var effTaW = TaW - mod;
-			var TaPstar = effTaW;
-
-			// Negativer TaW: |effTaW| zu Teilwürfen addieren
-			if ( effTaW < 0 )
-			{
-				for ( roll in rolls )
-				{
-					effRolls[roll] = rolls[roll] + Math.abs(effTaW);
-				}
-				TaPstar = 0;
-			}
-
-			for ( roll in effRolls )
-			{
-				TaPstar -= Math.max(0, effRolls[roll] - stats[roll]);
-			}
-
-			// Doppel/Dreifach-1/20-Berechnung
+			/*
+				Doppel/Dreifach-1/20-Berechnung
+				Vor der TaP*-Berechnung, da diese damit gegebenenfalls hinfällig wird
+			*/
 			{
 				let successes = 0;
 				let failures = 0;
@@ -18410,18 +18395,92 @@ on('clicked:check', (info) => {
 					} else if (roll >= failure) {
 						failures += 1;
 					}
-					if ( successes >= 2 )
+					if (successes >= 2)
 					{
 						criticality = successes;
-					} else if ( failures >= 2 ) {
+					} else if (failures >= 2) {
 						criticality = -failures;
 					}
+				}
+				/* feste Matrix
+				if (festeMatrix && criticality === -2)
+				{
+					criticality = -1;
+					for (roll of rolls)
+					{
+						if (
+							(roll > success) &&
+							(roll < failure) &&
+							(
+								roll === 18 || roll === 19
+							)
+						)
+						{
+							criticality -= 1;
+						}
+					}
+				}*/
+				/* Spruchhemmung, soll nur auslösen, wenn eh nicht Doppel/Dreifach-1/20
+				if (
+					spruchhemmung &&
+					criticality > -2 &&
+					criticality < 2 &&
+					(
+						(roll[0] === roll[1]) ||
+						(roll[1] === roll[2]) ||
+						(roll[2] === roll[0])
+					)
+				)
+				{
+					criticality = -2;
+				}*/
+			}
+
+			/*
+				TaP*-Berechnung
+			*/
+			var effRolls = rolls;
+			var effTaW = TaW - mod;
+			var TaPstar = effTaW;
+
+			// Negativer TaW: |effTaW| zu Teilwürfen addieren
+			if (criticality >= 2)
+			{
+				TaPstar = TaW;
+				result = 1;
+			} else {
+				if (effTaW < 0)
+				{
+					for (roll in rolls)
+					{
+						effRolls[roll] = rolls[roll] + Math.abs(effTaW);
+					}
+					TaPstar = 0;
+				}
+
+				// TaP-Verbrauch für jeden Wurf
+				for (roll in effRolls)
+				{
+					TaPstar -= Math.max(0, effRolls[roll] - stats[roll]);
+				}
+
+				// Max. TaP* = TaW
+				TaPstar = Math.min(TaW, TaPstar);
+
+				// Ergebnis an Doppel/Dreifach-20 anpassen
+				if (Math.abs(criticality) <= 1)
+				{
+					result = TaPstar < 0 ? 0 : 1;
+				} else if (criticality <= -2) {
+					result = 0;
 				}
 			}
 
 			finishRoll(
 				results.rollId,
 				{
+					roll: TaPstar,
+					result: result,
 					criticality: criticality
 				}
 			);
