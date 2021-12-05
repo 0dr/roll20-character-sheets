@@ -12713,7 +12713,19 @@
                 <input type="checkbox" name="attr_debug-mode"> Debug-Modus aktivieren
             </label>
         </div>
+<!-- ANKAH1 -->
+<!-- The visible and draggable button for the macro bar -->
+<button type="roll" name="roll_athletik" value="@{athletik_action}">Athletik</button>
+
+<!-- The invisible button allowing the use of custom roll parsing -->
+<button type="action" name="act_athletik-action" class="sheet-default-hide"></button>
+
+<!-- The invisible field for the attribute which contains the ability call -->
+<input type="hidden" name="attr_athletik_action" value="">
+
 		<div class="sheet-hide">
+<button type="action" name="act_test">Click me</button>
+<button type="action" name="act_reacttest">Click me 2</button>
 			<!-- Comfort Attributes (= to shorten rolls) -->
 			AT-Wert aus aktiver Waffe (bei Wahl mehrerer aktiver Waffen wird addiert!)
 			<!-- Berechnung AT Wert -->
@@ -18353,7 +18365,16 @@ function calcCritLevels (effects) {
 }
 
 // ANKAH3
-on('clicked:check', (info) => {
+on("sheet:opened change:character_name", function(eventInfo) {
+	safeGetAttrs(["character_name", "athletik_action"], function(v) {
+		var attrsToChange = {};
+		attrsToChange["athletik_action"] = "%{" + v["character_name"] + "|athletik-action}";
+
+		safeSetAttrs(attrsToChange);
+	});
+});
+
+on('clicked:athletik-action', (info) => {
 	startRoll(
 		"@{gm_roll_opt} " +
 		"&{template:check} " +
