@@ -18367,17 +18367,19 @@ on('clicked:check', (info) => {
 		"{{critThresholds=[[[[@{cs_talent}]]d1cs0cf2 + [[@{cf_talent}]]d1cs0cf2]]}} ",
 		(results) => {
 			console.log("test: info:", info, "results:", results);
-			var TaW = results.results.wert.result;
-			var mod = results.results.mod.result;
+			var rollID = results.rollId;
+			results = results.results;
+			var TaW = results.wert.result;
+			var mod = results.mod.result;
 			var stats = [
-				results.results.stats.rolls[0].dice,
-				results.results.stats.rolls[1].dice,
-				results.results.stats.rolls[2].dice
+				results.stats.rolls[0].dice,
+				results.stats.rolls[1].dice,
+				results.stats.rolls[2].dice
 			];
-			var rolls = results.results.roll.rolls[0].results;
+			var rolls = results.roll.rolls[0].results;
+			var success = results.critThresholds.rolls[0].dice;
+			var failure = results.critThresholds.rolls[1].dice;
 			var result = 0;
-			var success = results.results.critThresholds.rolls[0].dice;
-			var failure = results.results.critThresholds.rolls[1].dice;
 			var criticality = 0;
 
 			/*
@@ -18477,7 +18479,7 @@ on('clicked:check', (info) => {
 			}
 
 			finishRoll(
-				results.rollId,
+				rollID,
 				{
 					roll: TaPstar,
 					result: result,
