@@ -2,10 +2,13 @@
     <div class="settings">
         <div class="mainTitle">SETTINGS:</div>
         <div class="settingsBody">
-            <div style="display: flex"><input name="attr_lock" class="toggle" type="checkbox"/><p>Lock controls</p></div>
+            <div style="display: flex; align-items: baseline;">
+                <input name="attr_lock" class="toggle" type="checkbox" style="margin-right: 0.5em;"/>
+                <p>LOCK Attributes and Values. (Prevents you from accidentally changing them)</p>
+            </div>
 
-            <div class="containerFift" style="">
-                <p><b>Roll to GM: </b></p>
+            <div class="containerFift" style="display: flex; align-items: baseline;">
+                <p style="margin-right: 0.5em;"><b>Roll to GM: </b></p>
                 <label class="clabl" style="width:25%;"><input type="radio" name="attr_gmRoll" value="" checked="checked"/><div> Disabled </div> </label>
                 <label class="clabl" style="width:25%;"><input type="radio" name="attr_gmRoll" value="/w gm " /><div> Enabled </div></label>
             </div>
@@ -14,18 +17,18 @@
     </div>
     <div class="Main">
         <div class="mainTitle">MAIN:</div>
-        <div class="Basics">
+        <div class="Basics bg-grey">
             <div class="left">
                 <label><b>Name:</b> <input name="attr_character_name" type="text"/></label>
-                <label><b>Alter: </b><input name="attr_age" type="text"/></label>
-                <label><b>Rasse: </b><input name="attr_race" type="text"/></label>
-                <label><b>Beschreibung: </b><textarea name="attr_description" type="description"/></label>
+                <label><b>Age:: </b><input name="attr_age" type="text"/></label>
+                <label><b>Race:: </b><input name="attr_race" type="text"/></label>
+                <label><b>Description: </b><textarea name="attr_description" type="description"/></label>
             </div>
             <div class="avatar">
                 <img name="attr_character_avatar">
             </div>
             <div class="right">
-                <label><b>Behinderungen: </b><textarea name="attr_disability" type="text"/></label>
+                <label><b>Disabilities:: </b><textarea name="attr_disability" type="text"/></label>
                 <label><b>Ticks: </b><textarea name="attr_ticks" type="text"/></label>
             </div>
         </div>
@@ -89,7 +92,7 @@
     
     <div class="skills">
         <div class="mainTitle"> SKILLS: </div>
-        <div class="containerThird">
+        <div class="containerThird bg-grey">
             <div class="containerFiveRows">
                 <p class="largeText noPad"><b>STR</b> Based Skills
                 <div class="skill">
@@ -105,11 +108,16 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_endurance_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_endurance_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%">
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_endurance_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="endurance" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_endurance_level" value="0" type="boxed" style="width: 100%;"/>
+
                         </div>
                     </div>
                 </div>
@@ -126,11 +134,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_athletics_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_athletics_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%">
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_athletics_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="athletics" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_athletics_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>    
@@ -147,11 +159,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_grip_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_grip_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_grip_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="grip" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_grip_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>        
@@ -168,11 +184,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_swim_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_swim_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_swim_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="swim" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_swim_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>
@@ -189,11 +209,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_throw_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_throw_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_throw_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="throw" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_throw_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>
@@ -213,11 +237,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_perception_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_perception_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_perception_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="perception" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_perception_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>
@@ -234,11 +262,16 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_acrobatics_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_acrobatics_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_acrobatics_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="acrobatics" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_acrobatics_level" type="boxed" style="width: 100%;"/>
+                            
                         </div>
                     </div>
                 </div>                
@@ -255,11 +288,16 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_ride_pilot_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_ride_pilot_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_ride_pilot_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="ride_pilot" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_ride_pilot_level" type="boxed" style="width: 100%;"/>
+                            
                         </div>
                     </div>
                 </div>                
@@ -276,11 +314,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_sleight_of_hand_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_sleight_of_hand_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_sleight_of_hand_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="sleight_of_hand" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_sleight_of_hand_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>                    
@@ -297,11 +339,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_stealth_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_stealth_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_stealth_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="stealth" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_stealth_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>
@@ -321,11 +367,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_general_knowledge_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_general_knowledge_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_general_knowledge_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="general_knowledge" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_general_knowledge_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>
@@ -342,11 +392,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_deception_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_deception_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_deception_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="deception" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_deception_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>                
@@ -363,11 +417,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_infiltration_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_infiltration_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_infiltration_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="infiltration" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_infiltration_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>                    
@@ -384,11 +442,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_persuasion_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_persuasion_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_persuasion_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="persuasion" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_persuasion_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>                
@@ -405,11 +467,15 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_survival_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_survival_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
+                            <div class="" style="display: flex; height: 1.5em; width: auto; margin: 0.2em; ">
+                                <p class="alignLeft noPad" style="font-size: large; margin-right: 0.2em"><b>&Sigma;</b></p>
+                                <input class="calcBox" name="attr_input_skill_survival_level" value="0"style="width: 100%; text-align: center" value="0"/>
+                            </div>
+                            <hr style="margin-top: 0.5em; margin-bottom: 0.5em;"/>
                             <button name="act_test" id="survival" type="action" class="buttonVocation">
-                                <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
+                                <p class="alignLeft noPad" style="font-size: xx-large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_skill_survival_level" type="boxed" style="width: 100%;"/>
                         </div>
                     </div>
                 </div>
@@ -425,7 +491,7 @@
                 <div class="vocationMain Purple">
                     <div class="VocationSkillDescribtion flex">
                         <p class="alignLeft noPad"><b>Vocation: </b></p>
-                        <input type="text" name="attr_input_vocation1_name"/>
+                        <input type="text" name="attr_input_vocation1_name" value="VOCATION1 NAME"/>
                     </div>
                     <div class="VocationSkillType flex">
                         <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -441,11 +507,11 @@
                             <label class="clabl boxed" style="width:25%;"><input type="radio" name="attr_radio_vocation1_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:25%;"><input type="radio" name="attr_radio_vocation1_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
                             <button name="act_test" id="vocation1" type="action" class="buttonVocation">
                                 <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_vocation1_value" type="boxed" style="width: 100%;"/>
+                            <input class="calcBox" name="attr_input_vocation1_value"style="width: 100%;" value="0"/>
                         </div>
                     </div>
                 </div>
@@ -453,7 +519,7 @@
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation1_skill1_name"/>
+                            <input type="text" name="attr_input_vocation1_skill1_name" value="VOCATION1 SKILL NAME 1"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -479,7 +545,7 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
@@ -487,7 +553,7 @@
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation1_skill2_name"/>
+                            <input type="text" name="attr_input_vocation1_skill2_name" value="VOCATION 1 SKILL NAME 2"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -511,14 +577,14 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation1_skill3_name"/>
+                            <input type="text" name="attr_input_vocation1_skill3_name" value="VOCATION 1 SKILL NAME 3"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -544,14 +610,14 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation1_skill4_name"/>
+                            <input type="text" name="attr_input_vocation1_skill4_name" value="VOCATION 1 SKILL NAME 4"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -576,7 +642,7 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
@@ -586,7 +652,7 @@
                 <div class="vocationMain Purple">
                     <div class="VocationSkillDescribtion flex">
                         <p class="alignLeft noPad"><b>Vocation: </b></p>
-                        <input type="text" name="attr_input_vocation2_name"/>
+                        <input type="text" name="attr_input_vocation2_name" value="VOCATION 2 NAME"/>
                     </div>
                     <div class="VocationSkillType flex">
                         <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -604,11 +670,11 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_vocation2_level" value="4" /><div> +4 </div></label>
                         </div>
                     
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
                             <button name="act_test" id="vocation2" type="action" class="buttonVocation">
                                 <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_vocation2_value" type="boxed" style="width: 100%;"/>
+                            <input class="calcBox" name="attr_input_vocation2_value"style="width: 100%;" value="0"/>
                         </div>
                     </div>
                 </div>
@@ -616,7 +682,7 @@
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation2_skill1_name"/>
+                            <input type="text" name="attr_input_vocation2_skill1_name" value="VOCATION 2 SKILL NAME 1"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -641,14 +707,14 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text"name="attr_input_vocation2_skill2_name"/>
+                            <input type="text"name="attr_input_vocation2_skill2_name" value="VOCATION 2 SKILL NAME 2"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -673,14 +739,14 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text"name="attr_input_vocation2_skill3_name"/>
+                            <input type="text"name="attr_input_vocation2_skill3_name" value="VOCATION 2 SKILL NAME 3"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -705,14 +771,14 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text"name="attr_input_vocation2_skill4_name"/>
+                            <input type="text"name="attr_input_vocation2_skill4_name" value="VOCATION 2 SKILL NAME 4"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -737,7 +803,7 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
@@ -748,7 +814,7 @@
                 <div class="vocationMain Purple">
                     <div class="VocationSkillDescribtion flex">
                         <p class="alignLeft noPad"><b>Vocation: </b></p>
-                        <input type="text" name="attr_input_vocation3_name"/>
+                        <input type="text" name="attr_input_vocation3_name" value="VOCATION 3 NAME"/>
                     </div>
                     <div class="VocationSkillType flex">
                         <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -765,11 +831,11 @@
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_vocation3_level" value="3" /><div> +3 </div></label>
                             <label class="clabl boxed" style="width:22%;"><input type="radio" name="attr_radio_vocation3_level" value="4" /><div> +4 </div></label>
                         </div>
-                        <div class="skillSum boxed" style="width: 37.5%" style="align: right">
+                        <div class="skillSum boxed" style="width: 37.5%" >
                             <button name="act_test" id="vocation3" type="action" class="buttonVocation">
                                 <p class="alignLeft noPad" style="font-size: large; font-family: dicefontd8"><b>0</b></p>
                             </button>
-                            <input class="calcBox" name="attr_input_vocation3_value" type="boxed" style="width: 100%;"/>
+                            <input class="calcBox" name="attr_input_vocation3_value"style="width: 100%;" value="0"/>
                         </div>
                     </div>
                 </div>
@@ -777,7 +843,7 @@
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation3_skill1_name"/>
+                            <input type="text" name="attr_input_vocation3_skill1_name" value="VOCATION 3 SKILL NAME 1"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -802,14 +868,14 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation3_skill2_name"/>
+                            <input type="text" name="attr_input_vocation3_skill2_name" value="VOCATION 3 SKILL NAME 2"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -834,14 +900,14 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation3_skill3_name"/>
+                            <input type="text" name="attr_input_vocation3_skill3_name" value="VOCATION 3 SKILL NAME 3"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -866,14 +932,14 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
                     <div class="VocationSkill Green">
                         <div class="VocationSkillDescribtion flex">
                             
-                            <input type="text" name="attr_input_vocation3_skill4_name"/>
+                            <input type="text" name="attr_input_vocation3_skill4_name" value="VOCATION 3 SKILL NAME 4"/>
                         </div>
                         <div class="VocationSkillType flex">
                             <input name="attr_lock" class="toggle" type="checkbox" style="display: none"/>
@@ -898,7 +964,7 @@
                                 </button>
                             </div>
                             <div class="skillSum vocationskillresult">
-                                <input class="calcBox" type="boxed" style="width: 100%;"/>
+                                <input class="calcBox"style="width: 100%;" value="0"/>
                             </div>
                         </div>
                     </div>
@@ -910,7 +976,7 @@
     </div>
     <div class="states">
         <div class="mainTitle"> STATE: </div>
-        <div class="halved">
+        <div class="halved bg-grey">
             <div class="left">
                 <div class="injuries">
                     <div class="padding">
@@ -1015,6 +1081,7 @@
         <div class="Basics">
             <p>This Charactersheet is in beta phase, the auto calc fields are missing and some designwork isn't finished. <br><b>This sheet should be in a playable state tho!</b></p>
         </div>
+    </div>
 </div>
 <script type="text/worker">
     //-------------------------------------------------------------------------------------
@@ -1727,7 +1794,7 @@ on("change:radio_endurance_level change:radio_athletics_level change:radio_grip_
     let value = parseInt(baseAttr["radio_"+targetAttr]) + parseInt(eventInfo.newValue);
     console.log(value);
     let setObject = {};
-    setObject[target] = value;
+    setObject[target] = value + 3;
     console.log(setObject);
     await setAttrsAsync(setObject);
     

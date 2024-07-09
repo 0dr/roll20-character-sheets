@@ -3,10 +3,13 @@
 
 
 *, ::before, ::after {box-sizing: border-box;}
+*, *::before, *::after {box-sizing: border-box !important;}
 
 div {width: 100%}
 p {text-align: center}
 select {margin: auto;}
+
+.bg-grey {}
 
 .clabl { display: flex; margin-bottom: 0px; padding-right: 0px}
 .clabl > input {visibility: hidden; position: absolute;}
@@ -14,8 +17,8 @@ select {margin: auto;}
 .clabl > input:checked + div { background-color: #ffd6bb; }
 
 .boxed { border: 1px; border-style: solid; text-align: center }
-.charsheet .mainContainer {width: 95%; box-sizing: border-box !important}
-.mainTitle { display: flex;justify-content:center; align-items:center;background-color: midnightblue; color: white; text-decoration-thickness: 5px; font-weight:bold; text-align: center; height: 25px; vertical-align: middle; line-height: 100%}
+.charsheet .mainContainer {width: 100%; box-sizing: border-box !important}
+.mainTitle { border-radius: 0.5em; display: flex;justify-content:center; align-items:center;background-color: midnightblue; color: white; text-decoration-thickness: 5px; font-weight:bold; text-align: center; height: 25px; vertical-align: middle; line-height: 100%}
 .containerThird { display: flex; }
 .containerThird>div { display: inline-block; width: 100%}
 .charsheet .containerFift>label { margin-bottom: 0px; padding-right: 0px; text-align: center;}
@@ -37,11 +40,12 @@ select {margin: auto;}
 .skillSum>input {text-align: center; }
 
 .settingsBody {display: flex; }
+.settingsBody > div {padding: 1em; }
 
 .alignLeft {text-align: left}
 .flex {display: flex; width: 100%}
 .noPad { padding: 0px; margin: 0px; outline: 0px;}
-.calcBox {line-height: 3em}
+.calcBox {} /* line-height: 3em */
 .largeText {font-size: larger;}
 .largedialog label {width: 100%; text-align: left; float: none; display: block; padding-right: 0px;}
     
@@ -52,10 +56,10 @@ select {margin: auto;}
 .VocationSkillDescribtion>p {padding: 0.5em}
 .containerVocationSkills {display: flex; flex-wrap: wrap; flex-direction: row;padding: 0}
 .containerVocation {display: inline-block; padding:0.5em;}
-.containerVocation>div {padding: 1em;}
+.containerVocation>div {} /*padding: 1em;*/
 .Green {padding: 1em; box-sizing: border-box;}
 
-.Basics {display: flex;}
+.Basics {display: flex; justify-content: center;}
 .left {width: 40%; padding: 1em}
 .left>label {padding: 0.5em}
 .right {display: block; width: 40%}
